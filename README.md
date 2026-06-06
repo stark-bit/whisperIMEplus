@@ -1,13 +1,18 @@
+<a href="http://unmaintained.tech/">
+     <img src="http://unmaintained.tech/badge.svg?4" width="400">
+   </a>
+   
 # stark-bit/whisperIMEplus — Fork Changes
 
    **Fork adds an OpenAI remote backend toggle**, allowing switching between local ONNX transcription and remote OpenAI Whisper API on the fly.
 
    ### Changes:
-   - Toggle button on IME keyboard bar + standalone activity
-   - OpenAI API transcriber (OkHttp multipart client)
-   - Settings UI for endpoint, API key, model, language
-   - Network security config for cleartext HTTP (local dev)
-   - Extra keyboard row buttons: dot (`.`), space, dash (`-`)
+   - **OpenAI remote backend** toggle — local ONNX ↔ cloud Whisper API
+   - One-tap backend switch via toggle button (IME + standalone)
+   - In-app settings for endpoint, key, model, and language
+   - Punctuation row: `·` `—` ␣ buttons alongside the mic
+
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/fork-1.jpeg" height="250"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/fork-2.jpeg" height="250"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/fork-3.jpeg" height="250"/>
 
    ---
 
