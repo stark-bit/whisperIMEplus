@@ -42,4 +42,11 @@
     <string name="lang2">Language 2</string>
     <string name="setting_bluetooth">Use Bluetooth devices</string>
 
+    <string name="settings_backend_type">Backend:</string>
+    <string name="settings_openai_endpoint">Endpoint URL</string>
+    <string name="settings_openai_api_key">API Key</string>
+    <string name="settings_openai_model">Model</string>
+    <string name="settings_openai_language">Language (optional, e.g. en)</string>
+    <string name="backend_toggle">Toggle local/remote backend</string>
+
 </resources>

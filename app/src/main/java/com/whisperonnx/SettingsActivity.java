@@ -10,8 +10,13 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -171,6 +176,53 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // ===== OPENAI REMOTE BACKEND SETTINGS =====
+        Spinner spinnerBackendType = findViewById(R.id.spinner_backend_type);
+        LinearLayout layoutOpenaiSettings = findViewById(R.id.layout_openai_settings);
+        EditText editEndpoint = findViewById(R.id.edit_openai_endpoint);
+        EditText editApiKey = findViewById(R.id.edit_openai_api_key);
+        EditText editModel = findViewById(R.id.edit_openai_model);
+        EditText editLanguage = findViewById(R.id.edit_openai_language);
+
+        String[] backendOptions = {"Local (ONNX)", "OpenAI API"};
+        ArrayAdapter<String> backendAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, backendOptions);
+        backendAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBackendType.setAdapter(backendAdapter);
+
+        String backendType = sp.getString("backend_type", "local");
+        spinnerBackendType.setSelection(backendType.equals("openai") ? 1 : 0);
+
+        editEndpoint.setText(sp.getString("openai_endpoint", "https://api.openai.com/v1/audio/transcriptions"));
+        editApiKey.setText(sp.getString("openai_api_key", ""));
+        editModel.setText(sp.getString("openai_model", "whisper-1"));
+        editLanguage.setText(sp.getString("openai_language", ""));
+
+        layoutOpenaiSettings.setVisibility(backendType.equals("openai") ? View.VISIBLE : View.GONE);
+
+        spinnerBackendType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = position == 1 ? "openai" : "local";
+                sp.edit().putString("backend_type", selected).apply();
+                layoutOpenaiSettings.setVisibility(selected.equals("openai") ? View.VISIBLE : View.GONE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        TextWatcher openaiSaveWatcher = new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override public void afterTextChanged(Editable s) { saveOpenaiConfig(); }
+        };
+
+        editEndpoint.addTextChangedListener(openaiSaveWatcher);
+        editApiKey.addTextChangedListener(openaiSaveWatcher);
+        editModel.addTextChangedListener(openaiSaveWatcher);
+        editLanguage.addTextChangedListener(openaiSaveWatcher);
+
         spinnerLanguage = findViewById(R.id.spnrLanguage);
 
         LanguagePairAdapter languagePairAdapter = new LanguagePairAdapter(this, android.R.layout.simple_spinner_item, languagePairs);
@@ -248,5 +300,19 @@ public class SettingsActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveOpenaiConfig() {
+        EditText editEndpoint = findViewById(R.id.edit_openai_endpoint);
+        EditText editApiKey = findViewById(R.id.edit_openai_api_key);
+        EditText editModel = findViewById(R.id.edit_openai_model);
+        EditText editLanguage = findViewById(R.id.edit_openai_language);
+
+        sp.edit()
+            .putString("openai_endpoint", editEndpoint.getText().toString().trim())
+            .putString("openai_api_key", editApiKey.getText().toString().trim())
+            .putString("openai_model", editModel.getText().toString().trim())
+            .putString("openai_language", editLanguage.getText().toString().trim())
+            .apply();
     }
 }

@@ -42,6 +42,7 @@ public class WhisperInputMethodService extends InputMethodService {
     private ImageButton btnDel;
     private ImageButton btnLang1;
     private ImageButton btnLang2;
+    private ImageButton btnBackend;
     private TextView tvStatus;
     private Recorder mRecorder = null;
     private Whisper mWhisper = null;
@@ -112,6 +113,9 @@ public class WhisperInputMethodService extends InputMethodService {
         btnDel = view.findViewById(R.id.btnDel);
         btnLang1 = view.findViewById(R.id.btnLang1);
         btnLang2 = view.findViewById(R.id.btnLang2);
+        btnBackend = view.findViewById(R.id.btnBackend);
+        String backendType = sp.getString("backend_type", "local");
+        btnBackend.setImageResource(backendType.equals("openai") ? R.drawable.ic_cloud_on_36dp : R.drawable.ic_cloud_off_36dp);
         int langSelected = sp.getInt("langSelected", 1);
         if (langSelected == 1) {
             btnLang1.setImageResource(R.drawable.ic_counter_1_on_36dp);
@@ -295,6 +299,14 @@ public class WhisperInputMethodService extends InputMethodService {
             editor.apply();
             btnLang1.setImageResource(R.drawable.ic_counter_1_off_36dp);
             btnLang2.setImageResource(R.drawable.ic_counter_2_on_36dp);
+        });
+
+        btnBackend.setOnClickListener(v -> {
+            String current = sp.getString("backend_type", "local");
+            String next = current.equals("openai") ? "local" : "openai";
+            Log.d(TAG, "btnBackend: " + current + " -> " + next);
+            sp.edit().putString("backend_type", next).apply();
+            btnBackend.setImageResource(next.equals("openai") ? R.drawable.ic_cloud_on_36dp : R.drawable.ic_cloud_off_36dp);
         });
 
         return view;

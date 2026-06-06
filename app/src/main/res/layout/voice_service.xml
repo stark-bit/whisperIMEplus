@@ -52,6 +52,8 @@
             android:src="@drawable/ic_counter_2_off_36dp"
             android:contentDescription="@string/lang2"/>
 
+
+
         <ImageButton
             android:id="@+id/btnKeyboard"
             android:layout_width="wrap_content"
@@ -60,6 +62,16 @@
             android:background="@color/darkGrey"
             android:src="@drawable/ic_keyboard_36dp"
             android:contentDescription="@string/exit_button"/>
+
+        <ImageButton
+            android:id="@+id/btnBackend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btnTranslate"
+            android:background="@color/darkGrey"
+            android:src="@drawable/ic_cloud_off_36dp"
+            android:contentDescription="@string/backend_toggle" />
 
         <ImageButton
             android:id="@+id/btnTranslate"

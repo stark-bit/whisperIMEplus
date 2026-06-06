@@ -41,6 +41,16 @@
             android:src="@drawable/ic_auto_off_36dp"
             android:contentDescription="@string/auto_button"/>
 
+        <ImageButton
+            android:id="@+id/btnBackend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btnModeAuto"
+            android:background="@color/darkGrey"
+            android:src="@drawable/ic_cloud_off_36dp"
+            android:contentDescription="@string/backend_toggle" />
+
     </RelativeLayout>
 
     <LinearLayout

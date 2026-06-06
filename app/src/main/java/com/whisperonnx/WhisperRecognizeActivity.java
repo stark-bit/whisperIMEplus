@@ -36,6 +36,7 @@ public class WhisperRecognizeActivity extends AppCompatActivity {
     private ImageButton btnRecord;
     private ImageButton btnCancel;
     private ImageButton btnModeAuto;
+    private ImageButton btnBackend;
     private ProgressBar processingBar = null;
     private Recorder mRecorder = null;
     private Whisper mWhisper = null;
@@ -75,6 +76,9 @@ public class WhisperRecognizeActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         btnRecord = findViewById(R.id.btnRecord);
         btnModeAuto = findViewById(R.id.btnModeAuto);
+        btnBackend = findViewById(R.id.btnBackend);
+        String backendType = sp.getString("backend_type", "local");
+        btnBackend.setImageResource(backendType.equals("openai") ? R.drawable.ic_cloud_on_36dp : R.drawable.ic_cloud_off_36dp);
         processingBar = findViewById(R.id.processing_bar);
 
         modeAuto = sp.getBoolean("imeModeAuto",false);
@@ -130,6 +134,13 @@ public class WhisperRecognizeActivity extends AppCompatActivity {
             if (mWhisper != null) stopTranscription();
             setResult(RESULT_CANCELED, null);
             finish();
+        });
+
+        btnBackend.setOnClickListener(v -> {
+            String current = sp.getString("backend_type", "local");
+            String next = current.equals("openai") ? "local" : "openai";
+            sp.edit().putString("backend_type", next).apply();
+            btnBackend.setImageResource(next.equals("openai") ? R.drawable.ic_cloud_on_36dp : R.drawable.ic_cloud_off_36dp);
         });
 
         btnRecord.setOnTouchListener((v, event) -> {
