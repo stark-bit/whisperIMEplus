@@ -1,23 +1,38 @@
+# stark-bit/whisperIMEplus — Fork Changes
+
+   **Fork adds an OpenAI remote backend toggle**, allowing switching between local ONNX transcription and remote OpenAI Whisper API on the fly.
+
+   ### Changes:
+   - Toggle button on IME keyboard bar + standalone activity
+   - OpenAI API transcriber (OkHttp multipart client)
+   - Settings UI for endpoint, API key, model, language
+   - Network security config for cleartext HTTP (local dev)
+   - Extra keyboard row buttons: dot (`.`), space, dash (`-`)
+
+   ---
+
+   # Original Fork Content
+
 ```
 Google has announced that, starting in 2026/2027, all apps on certified Android devices
 will require the developer to submit personal identity details directly to Google.
-Since the developers of this app do not agree to this requirement, this app will no longer 
+Since the developers of this app do not agree to this requirement, this app will no longer
 work on certified Android devices after that time.
 ```
 
 ## Donate
-<pre>Send a coffee to 
-woheller69@t-online.de 
+<pre>Send a coffee to
+woheller69@t-online.de
 <a href= "https://www.paypal.com/signin"><img  align="left" src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-150px.png"></a>
 
-  
+
 Or via this link (with fees)
 <a href="https://www.paypal.com/donate?hosted_button_id=XVXQ54LBLZ4AA"><img  align="left" src="https://img.shields.io/badge/Donate%20with%20Debit%20or%20Credit%20Card-002991?style=plastic"></a></pre>
 # Fast Voice recognition based on Whisper
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" height="250"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" height="250"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" height="250"/>
 
-Whisper+ is an input method editor (IME) that leverages voice recognition technology based on the Whisper engine. 
+Whisper+ is an input method editor (IME) that leverages voice recognition technology based on the Whisper engine.
 It offers a seamless user experience, functioning both as a standalone application and an integrated IME that can be activated, e.g. via the microphone button in HeliBoard.
 As a standalone app Whisper+ can also translate any supported language to English.
 
@@ -25,10 +40,10 @@ Besides providing an IME, Whisper+ can also be selected as system-wide voice inp
 
 ## Initial Setup
 
-Upon launching Whisper+ for the first time, you will need to download the Whisper model from Hugging Face and install it. 
+Upon launching Whisper+ for the first time, you will need to download the Whisper model from Hugging Face and install it.
 Voice recognition works entirely offline, ensuring your privacy and convenience.
 
-Please note that for use as voice input (not as IME) there is a separate settings activity which can be accessed from Android settings 
+Please note that for use as voice input (not as IME) there is a separate settings activity which can be accessed from Android settings
 (System > Languages > Speech > Voice Input). There you can activate the app as voice input and then click the settings button.
 
 If after installation you do not find Whisper+ as voice input or only see a limited list (hard-coded ones like Google/Samsung)
