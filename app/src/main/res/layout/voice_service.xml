@@ -92,20 +92,46 @@
         android:paddingHorizontal="10dp"
         android:textSize="20dp"
         android:textColor="@android:color/holo_red_dark" />
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_buttons"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginHorizontal="5dp"
         android:layout_marginBottom="10dp">
 
         <ImageButton
+            android:id="@+id/btnDash"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_button_background"
+            android:src="@drawable/ic_dash_48dp"
+            android:contentDescription="@string/dash_button"/>
+        <ImageButton
+            android:id="@+id/btnDot"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_button_background"
+            android:src="@drawable/ic_dot_48dp"
+            android:contentDescription="@string/dot_button"/>
+        <Button
+            android:id="@+id/btnSpace"
+            android:layout_width="30dp"
+            android:layout_height="48dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_button_background"
+            android:text=""
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:contentDescription="@string/space_button"/>
+        <ImageButton
             android:id="@+id/btnRecord"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginVertical="3dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_margin="5dp"
             android:background="@drawable/rounded_button_background"
             android:src="@drawable/ic_mic_48dp"
             android:contentDescription="@string/record_button"/>
@@ -113,24 +139,19 @@
             android:id="@+id/btnDel"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:layout_marginHorizontal="3dp"
-            android:layout_toStartOf="@id/btnEnter"
+            android:layout_margin="3dp"
             android:background="@drawable/rounded_button_background"
             android:src="@drawable/ic_keyboard_del_48dp"
             android:contentDescription="@string/delete_button"/>
-
         <ImageButton
             android:id="@+id/btnEnter"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:layout_marginHorizontal="3dp"
-            android:layout_alignParentEnd="true"
+            android:layout_margin="3dp"
             android:background="@drawable/rounded_button_background"
             android:src="@drawable/ic_keyboard_return_48dp"
             android:contentDescription="@string/return_button"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -18,6 +18,9 @@
     <string name="record_button">Record</string>
     <string name="return_button">Return</string>
     <string name="delete_button">Delete</string>
+    <string name="dot_button">Dot</string>
+    <string name="space_button">Space</string>
+    <string name="dash_button">Dash</string>
     <string name="model_output">Model output</string>
     <string name="processing_done">Processing done in\u2009</string>
     <string name="language">Language:</string>

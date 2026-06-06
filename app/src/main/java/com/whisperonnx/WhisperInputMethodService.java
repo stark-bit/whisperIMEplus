@@ -19,8 +19,9 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -43,6 +44,9 @@ public class WhisperInputMethodService extends InputMethodService {
     private ImageButton btnLang1;
     private ImageButton btnLang2;
     private ImageButton btnBackend;
+    private ImageButton btnDot;
+    private Button btnSpace;
+    private ImageButton btnDash;
     private TextView tvStatus;
     private Recorder mRecorder = null;
     private Whisper mWhisper = null;
@@ -53,7 +57,7 @@ public class WhisperInputMethodService extends InputMethodService {
     private CountDownTimer countDownTimer;
     private static boolean translate = false;
     private boolean modeAuto = false;
-    private RelativeLayout layoutButtons;
+    private ViewGroup layoutButtons;
 
     @Override
     public void onCreate() {
@@ -114,6 +118,9 @@ public class WhisperInputMethodService extends InputMethodService {
         btnLang1 = view.findViewById(R.id.btnLang1);
         btnLang2 = view.findViewById(R.id.btnLang2);
         btnBackend = view.findViewById(R.id.btnBackend);
+        btnDot = view.findViewById(R.id.btnDot);
+        btnSpace = view.findViewById(R.id.btnSpace);
+        btnDash = view.findViewById(R.id.btnDash);
         String backendType = sp.getString("backend_type", "local");
         btnBackend.setImageResource(backendType.equals("openai") ? R.drawable.ic_cloud_on_36dp : R.drawable.ic_cloud_off_36dp);
         int langSelected = sp.getInt("langSelected", 1);
@@ -270,6 +277,10 @@ public class WhisperInputMethodService extends InputMethodService {
         btnEnter.setOnClickListener(v -> {
             getCurrentInputConnection().sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
         });
+
+        btnDot.setOnClickListener(v -> getCurrentInputConnection().commitText(".", 1));
+        btnSpace.setOnClickListener(v -> getCurrentInputConnection().commitText(" ", 1));
+        btnDash.setOnClickListener(v -> getCurrentInputConnection().commitText("-", 1));
 
         btnModeAuto.setOnClickListener(v -> {
             modeAuto = !modeAuto;
